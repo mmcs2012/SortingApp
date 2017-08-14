@@ -55,7 +55,7 @@ template <class Stype> void bubble_sort(Stype *item, int count)
 	register int a, b;
 	Stype t;
 	for (a = 1; a < count; ++a) {
-		for (b = a - 1; b >= a; --b) {
+		for (b = count - 1; b >= a; --b) {
 			if (item[b - 1] > item[b]) {
 				t = item[b - 1];
 				item[b - 1] = item[b];
