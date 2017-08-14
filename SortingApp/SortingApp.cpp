@@ -18,11 +18,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	char str[] = "bivbdbdyurewgcafwd";	
 	insertion_sort(str, (int)strlen(str));
-	cout << "Сортировка строки методом вставки: " << str << endl;
+	cout << "Sorting a string by inserting: " << str << endl;
 		
 	int intgr[7] = {1,7,3,8,4,6,2};
 	select_sort(intgr, 7);
-	cout << "Сортировка массива целых чисел методом выбора: ";
+	cout << "Sorting an array of integers by the selection method: ";
 	register int i;
 	for (i = 0; i < 7; ++i) {
 		cout << intgr[i];
@@ -32,7 +32,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	char str2[] = "vrnairtgunirtnitr";
 	bubble_sort(str2, (int)strlen(str2));
-	cout << "Сортировка строки методом пузырька: " << str2 << endl;
+	cout << "Sorting a string by bubble method: " << str2 << endl;
 		
 	_getch();
 	return 0;
