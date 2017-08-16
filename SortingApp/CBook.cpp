@@ -3,25 +3,25 @@
 #include "CBook.h"
 #include <stdlib.h>
 
-CBook::CBook()
+CBook::CBook() // CBook default constructor
 {
 }
 
-CBook::CBook(char *pName, char *pAuthor, char *pIsbn)
+CBook::CBook(char *pTitle, char *pAuthor, char *pIsbn) // CBook constructor with args
 {
-	strcpy(m_acName, pName);
+	strcpy(m_acTitle, pTitle);
 	strcpy(m_acAuthor,pAuthor);
 	strcpy(m_acIsbn, pIsbn);
 }
 
-CBook::~CBook()
+CBook::~CBook() // CBook destructor
 {
 }
 
 /*
 ostream &operator<<(ostream &stream, CBook &object)
 {
-	cout << object.m_acName << endl;
+	cout << object.m_acTitle << endl;
 	cout << object.m_acAuthor << endl;
 	cout << object.m_acIsbn << endl << endl;
 	return stream;

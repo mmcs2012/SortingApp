@@ -25,9 +25,9 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 	int anArr[] = {17,75,375,84,4,46,230}; // Example array of int
 	int nSizeOfIntArray = sizeof(anArr) / sizeof(*anArr); // Obtaining size of array
 	selectSort(anArr, nSizeOfIntArray); // Sorting function application (selection method)
-	cout << "Sorting an array of integers by the selection method: "; // Output
+	cout << "Sorting an array of integers by the selection method: ";
 	register int nReg = 0; // Useful for loops
-	while (nReg < nSizeOfIntArray) {
+	while (nReg < nSizeOfIntArray) { // Output loop
 		cout << anArr[nReg];
 		(nReg != nSizeOfIntArray - 1) ? (cout << " ") : (cout << endl << endl); // Space attachment
 		++nReg; // Prefix increment
@@ -45,12 +45,12 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 		CBook("What is Object-Oriented Programming?", "Bjarne Stroustrup", "1520304050607"),
 		CBook("Accelerated C++", "Andrew Koenig", "1520323050604"),
 		CBook("Effective STL", "Scott Meyers", "1520456050607"),
-		CBook("C++ Coding Standards", "Herb Sutter", "1545456050600") };
-	int nSizeOfBookArray = sizeof(books) / sizeof(*books);
+		CBook("C++ Coding Standards", "Herb Sutter", "1545456050600") }; // Array initialization
+	int nSizeOfBookArray = sizeof(books) / sizeof(*books); // Obtaining size of array
 	insertionSort(books, nSizeOfBookArray); // Sorting function application (inserting)
-	cout << "Sorting a books by inserting: " << endl; // Output
+	cout << "Sorting a books by inserting: " << endl;
 	nReg = 0;
-	while (nReg < nSizeOfBookArray) {
+	while (nReg < nSizeOfBookArray) { // Output loop
 		books[nReg].print(); // Class function call
 		++nReg;
 	}
