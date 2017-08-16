@@ -46,11 +46,11 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 		CBook("Accelerated C++", "Andrew Koenig", "1520323050604"),
 		CBook("Effective STL", "Scott Meyers", "1520456050607"),
 		CBook("C++ Coding Standards", "Herb Sutter", "1545456050600") };
-	int intSizeOfBookArray = sizeof(books) / sizeof(*books);
-	insertionSort(books, intSizeOfBookArray); // Sorting function application (inserting)
+	int nSizeOfBookArray = sizeof(books) / sizeof(*books);
+	insertionSort(books, nSizeOfBookArray); // Sorting function application (inserting)
 	cout << "Sorting a books by inserting: " << endl; // Output
 	nReg = 0;
-	while (nReg < intSizeOfBookArray) {
+	while (nReg < nSizeOfBookArray) {
 		books[nReg].print(); // Class function call
 		++nReg;
 	}
