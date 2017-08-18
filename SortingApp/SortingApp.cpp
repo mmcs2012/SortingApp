@@ -1,4 +1,4 @@
-// SortingApp.cpp: Defines the entry point for the console application.
+﻿// SortingApp.cpp: Defines the entry point for the console application.
 //
 
 // Local include
@@ -9,6 +9,7 @@
 #include <iostream> 
 #include <conio.h>
 #include <clocale>
+#include <ctime>
 
 // Using Standard Library namespace
 using namespace std;
@@ -18,24 +19,41 @@ template <class Stype> void insertionSort(Stype *pItem, int nCount);
 template <class Stype> void bubbleSort(Stype *pItem, int nCount);
 template <class Stype> void selectSort(Stype *pItem, int nCount);
 
+void printArray(int *pArr, unsigned int nSize); // Print function declaration
+
 int _tmain(int argc, _TCHAR* argv[]) // Entry point
 {
 	setlocale(LC_ALL, "Russian"); // Installs the specified system locale
+	srand((unsigned int)time(NULL)); // Random number generator initialized by runtime value returned from time()
+
+	const unsigned int nSizeOfArray = 30000; // Size of example array
+	unsigned int nStartTime; // Initial running time of the sorting algorithm
+	unsigned int nEndTime; // Algorithm work ended
+	register unsigned int nReg = 0; // Useful for loops
 	
-	int anArr[] = {17,75,375,84,4,46,230}; // Example array of int
-	int nSizeOfIntArray = sizeof(anArr) / sizeof(*anArr); // Obtaining size of array
-	selectSort(anArr, nSizeOfIntArray); // Sorting function application (selection method)
-	cout << "Sorting an array of integers by the selection method: ";
-	register int nReg = 0; // Useful for loops
-	while (nReg < nSizeOfIntArray) { // Output loop
-		cout << anArr[nReg];
-		(nReg != nSizeOfIntArray - 1) ? (cout << " ") : (cout << endl << endl); // Space attachment
+	int anArr[nSizeOfArray]; // Array of int declaration
+	while (nReg < nSizeOfArray)
+	{
+		anArr[nReg] = rand() % 50 - rand() % 50; // Fill the array with random values ​​in the range from -49 to 49 inclusive
 		++nReg; // Prefix increment
 	}
+	cout << "Representation of the generated array (first 50 elements only): ";
+	printArray(anArr, 50); // Call print function
+
+	nStartTime = clock();
+	selectSort(anArr, nSizeOfArray); // Sorting function application (selection method)
+	nEndTime = clock();
+	cout << "Sorting an array of integers by the selection method ("
+		 << "runtime is " << (nEndTime - nStartTime) / 1000.0 << ")." << endl << "First 50 elements output:" << endl;	
+	printArray(anArr, 50);
 	
 	char acStr[] = "qwertyuiopasdfghjklzxcvbnm"; // Example string
+	nStartTime = clock();
 	bubbleSort(acStr, (int)strlen(acStr)); // Sorting function application (bubble)
-	cout << "Sorting a string by bubble method: " << acStr << endl << endl; // Output
+	nEndTime = clock();
+
+	cout << "Sorting a string by bubble method (" << "runtime is " << (nEndTime - nStartTime) / 1000.0 << "):"
+		 << endl << acStr << endl << endl; // Output
 
 	
 	CBook books[] = { CBook("Thinking in C++", "Bruce Eckel", "1020304050603"),
@@ -46,11 +64,15 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 		CBook("Accelerated C++", "Andrew Koenig", "1520323050604"),
 		CBook("Effective STL", "Scott Meyers", "1520456050607"),
 		CBook("C++ Coding Standards", "Herb Sutter", "1545456050600") }; // Array initialization
-	int nSizeOfBookArray = sizeof(books) / sizeof(*books); // Obtaining size of array
-	insertionSort(books, nSizeOfBookArray); // Sorting function application (inserting)
-	cout << "Sorting a books by inserting: " << endl;
+	unsigned int nSizeOfBooksArray = sizeof(books) / sizeof(*books); // Obtaining size of array
+
+	nStartTime = clock();
+	insertionSort(books, nSizeOfBooksArray); // Sorting function application (inserting)
+	nEndTime = clock();
+
+	cout << "Sorting a books by inserting (" << "runtime is " << (nEndTime - nStartTime) / 1000.0 << "): " << endl;
 	nReg = 0;
-	while (nReg < nSizeOfBookArray) { // Output loop
+	while (nReg < nSizeOfBooksArray) { // Output loop
 		books[nReg].print(); // Class function call
 		++nReg;
 	}
@@ -112,3 +134,12 @@ template <class Stype> void selectSort(Stype *pItem, int nCount)
 	}
 }
 
+void printArray(int *pArr, unsigned int nSize)
+{
+	unsigned int nReg = 0;
+	while (nReg < nSize) { // Output loop
+		cout << pArr[nReg];
+		(nReg != nSize - 1) ? (cout << " ") : (cout << endl << endl); // Space attachment
+		++nReg; // Prefix increment
+	}
+}
