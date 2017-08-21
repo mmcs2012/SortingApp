@@ -37,7 +37,7 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 		anArr[nReg] = rand() % 50 - rand() % 50; // Fill the array with random values ​​in the range from -49 to 49 inclusive
 		++nReg; // Prefix increment
 	}
-	cout << "Representation of the generated array (first 50 elements only): ";
+	cout << "Representation of the generated array (first 50 elements only):" << endl;
 	printArray(anArr, 50); // Call print function
 
 	nStartTime = clock();
@@ -98,14 +98,9 @@ template <class Stype> void insertionSort(Stype *pItem, int nCount)
 template <class Stype> void bubbleSort(Stype *pItem, int nCount)
 {
 	register int a, b;
-	Stype t;
 	for (a = 1; a < nCount; ++a) {
 		for (b = nCount - 1; b >= a; --b) {
-			if (pItem[b - 1] > pItem[b]) {
-				t = pItem[b - 1];
-				pItem[b - 1] = pItem[b];
-				pItem[b] = t;
-			}
+				(pItem[b - 1] > pItem[b]) ? swap(pItem[b - 1], pItem[b]) : nullptr; // Using swap function
 		}
 	}
 }
