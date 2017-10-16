@@ -18,6 +18,7 @@ using namespace std;
 template <class Stype> void insertionSort(Stype *pItem, int nCount); 
 template <class Stype> void bubbleSort(Stype *pItem, int nCount);
 template <class Stype> void selectSort(Stype *pItem, int nCount);
+template <class Stype> void quickSort(Stype *pItem, int left, int right);
 
 void printArray(int *pArr, unsigned int nSize); // Print function declaration
 
@@ -39,6 +40,22 @@ int _tmain(int argc, _TCHAR* argv[]) // Entry point
 	}
 	cout << "Representation of the generated array (first 50 elements only):" << endl;
 	printArray(anArr, 50); // Call print function
+
+	nStartTime = clock();
+	quickSort(anArr, 0, nSizeOfArray - 1); // Sorting function application (quick method)
+	nEndTime = clock();
+	cout << "Sorting an array of integers by the quick method ("
+		<< "runtime is " << (nEndTime - nStartTime) / 1000.0 << ")." << endl << "First 50 elements output:" << endl;
+	printArray(anArr, 50);
+	
+	nReg = 0;
+	while (nReg < nSizeOfArray)
+	{
+		anArr[nReg] = rand() % 50 - rand() % 50;
+		++nReg;
+	}
+	cout << "Representation of the generated array (first 50 elements only):" << endl;
+	printArray(anArr, 50);
 
 	nStartTime = clock();
 	selectSort(anArr, nSizeOfArray); // Sorting function application (selection method)
@@ -128,6 +145,30 @@ template <class Stype> void selectSort(Stype *pItem, int nCount)
 		}
 	}
 }
+
+template <class Stype> void quickSort(Stype *pItem, int left, int right) {
+	register int i, j;
+	Stype x, y;
+
+	i = left;
+	j = right;
+	x = pItem[(left + right) / 2];
+	do {
+		while (pItem[i] < x && i < right) i++;
+		while (x<pItem[j] && j>left) j--;
+		if (i <= j) {
+			y = pItem[i];
+			pItem[i] = pItem[j];
+			pItem[j] = y;
+			i++;
+			j--;
+		}
+	} while (i <= j);
+	if (left < j) quickSort(pItem, left, j);
+	if (i < right) quickSort(pItem, i, right);
+}
+
+
 
 void printArray(int *pArr, unsigned int nSize)
 {
